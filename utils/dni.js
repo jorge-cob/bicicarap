@@ -24,6 +24,14 @@ const dniLetterEquivalences = {
   22: "E"
 }
 
+
+/**
+ * 
+ * @returns 
+ * You should ONLY use your own DNI.
+ * This function is only for testing purposes. 
+ * Any illegal use is strongly discouraged and I assume no responsibility for any missuse.
+ */
 export function randomDNIGenerator() {
   const randomNumber = Math.floor(Math.random() * 99999999);
   const comparationNumber = Math.trunc(randomNumber / 23) * 23; 

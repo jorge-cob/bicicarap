@@ -4,13 +4,21 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { createHash } from './utils/encryption';
 import { randomDNIGenerator } from './utils/dni';
 
-
+/**
+ * 
+ * @returns 
+ * 
+ * todo: 
+ *  - get requests access token which updates every 2 or 3 days -> accessToken: 80170a5c-65bb-11ee-b55e-02dc4692d6fc
+ *  - Pass request through vpn to maximize privacy 
+ */
 export default function App() {
   const [ dni, setDni ] = useState('');
   const [ bikeNumber, setBikeNumber ] = useState('');
   const [ hash, setHash ] = useState('');
   const [ success, setSuccess ] = useState(false);
   const [ apiResponse, setApiResponse ] = useState({});
+  const [accessToken, setAccessToken] = useState('');
   useEffect(() => {
     setHash(generateHash(dni, bikeNumber));
   }, [dni, bikeNumber])
@@ -19,12 +27,8 @@ export default function App() {
     headers: { 
       'Content-Type': 'application/json',
       'hashcode': hash,
-      'accessToken': '80170a5c-65bb-11ee-b55e-02dc4692d6fc'
+      'accessToken': accessToken
     },
-    body: JSON.stringify({ 
-      'hashcode': hash,
-      'accessToken': '80170a5c-65bb-11ee-b55e-02dc4692d6fc' 
-    }),
   };
 
   function generateHash() {
